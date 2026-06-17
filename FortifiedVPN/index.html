@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>FortifiedVPN</title>
+<!-- Шрифты -->
+<link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet" />
+<style>
+  /* Общие стили */
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    font-family: 'Montserrat', sans-serif;
+    line-height: 1.6;
+    background-color: #f4f4f4;
+    color: #333;
+    position: relative;
+    overflow-x: hidden;
+  }
+
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  /* Шапка */
+  header {
+    background-color: #0d47a1;
+    padding: 20px 40px;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 999;
+    flex-wrap: wrap;
+  }
+
+  header h1 {
+    font-size: 24px;
+    letter-spacing: 2px;
+  }
+
+  /* Навигация */
+  nav {
+    margin-top: 10px;
+  }
+
+  nav ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  nav ul li {
+    cursor: pointer;
+    font-weight: 600;
+    transition: color 0.3s;
+  }
+
+  nav ul li:hover,
+  nav ul li.active {
+    color: #ffeb3b;
+  }
+
+  /* Основной контент */
+  main {
+    padding: 40px 20px;
+    max-width: 1200px;
+    margin: auto;
+  }
+
+  section {
+    margin-bottom: 60px;
+  }
+
+  section h2 {
+    font-size: 32px;
+    color: #0d47a1;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #0d47a1;
+    display: inline-block;
+    padding-bottom: 5px;
+  }
+
+  /* Карточки особенностей */
+  .cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  .card {
+    background-color: #fff;
+    flex: 1 1 300px;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transition: transform 0.3s;
+  }
+
+  .card:hover {
+    transform: translateY(-5px);
+  }
+
+  /* Таблицы */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  table th, table td {
+    padding: 12px;
+    border: 1px solid #ddd;
+    text-align: left;
+  }
+
+  /* Блоки информации */
+  .info-block {
+    background-color: #e3f2fd;
+    padding: 20px;
+    border-radius: 8px;
+  }
+
+  /* Вкладки */
+  .tabs {
+    display: flex;
+    border-bottom: 2px solid #ccc;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+  }
+
+  .tab {
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    margin-right: 10px;
+  }
+
+  .tab:hover {
+    background-color: #ddd;
+  }
+
+  .tab.active {
+    background-color: #fff;
+    border: 2px solid #ccc;
+    border-bottom: none;
+  }
+
+  .tab-content {
+    display: none;
+    padding: 20px;
+    background-color: #fff;
+    border: 2px solid #ccc;
+    border-top: none;
+    border-radius: 0 0 8px 8px;
+  }
+
+  .tab-content.active {
+    display: block;
+  }
+
+  /* Кнопки */
+  .btn {
+    display: inline-block;
+    padding: 12px 24px;
+    background-color: #0d47a1;
+    color: #fff;
+    border-radius: 5px;
+    margin-top: 20px;
+    transition: background-color 0.3s;
+  }
+
+  .btn:hover {
+    background-color: #1565c0;
+  }
+
+  /* Адаптивность */
+  @media(max-width: 768px) {
+    header {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    nav ul {
+      flex-direction: column;
+      width: 100%;
+    }
+    nav ul li {
+      padding: 10px 0;
+    }
+    .cards {
+      flex-direction: column;
+    }
+    .tabs {
+      flex-direction: column;
+    }
+    .tab {
+      margin-bottom: 10px;
+    }
+  }
+
+  /* Снег */
+  .snow {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9999;
+    overflow: hidden;
+  }
+
+  .snowflake {
+    position: absolute;
+    top: -10px;
+    background: white;
+    border-radius: 50%;
+    opacity: 0.8;
+    width: 8px;
+    height: 8px;
+    box-shadow: 0 0 10px #fff;
+    animation-name: fall;
+    animation-timing-function: linear;
+  }
+
+  @keyframes fall {
+    0% {
+      transform: translateY(0) rotate(0deg);
+    }
+    100% {
+      transform: translateY(110vh) rotate(360deg);
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- Эффект снега -->
+<div class="snow" id="snow"></div>
+
+<header>
+  <h1>🛡️ FortifiedVPN</h1>
+  <nav>
+    <ul>
+
+    </ul>
+  </nav>
+</header>
+
+<main>
+  <!-- Главная -->
+  <section id="home" class="tab-section active">
+    <h2>Добро пожаловать в FortifiedVPN</h2>
+    <p>Обеспечьте свою безопасность и конфиденциальность онлайн с нашим надежным VPN-сервисом.</p>
+    <a href="#pricing" class="btn">Посмотреть цены</a>
+  </section>
+
+  <!-- Особенности -->
+  <section id="features" class="tab-section">
+    <h2>Наши особенности</h2>
+    <div class="cards">
+      <div class="card">
+        <h3>Высокая скорость</h3>
+        <p>Наслаждайтесь быстрым и стабильным соединением без задержек.</p>
+      </div>
+      <div class="card">
+        <h3>Шифрование данных</h3>
+        <p>Ваши данные под надежной защитой с помощью современных протоколов.</p>
+      </div>
+      <div class="card">
+        <h3>Много серверов</h3>
+        <p>Доступ к серверам по всему миру для свободного серфинга.</p>
+      </div>
+      <div class="card">
+        <h3>Легко в использовании</h3>
+        <p>Интуитивный интерфейс и простая настройка для любых устройств.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Цены -->
+  <section id="pricing" class="tab-section">
+    <h2>Тарифные планы</h2>
+    <div class="info-block">
+      <table>
+        <thead>
+          <tr>
+            <th>План</th>
+            <th>Месячная цена</th>
+            <th>Особенности</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Базовый (БОЛЬШЕ ПОКУПОК)</td>
+            <td>300₽</td>
+            <td>До 3 устройств, ограниченная скорость</td>
+            <td><a href="http://t.me/FortifiedVPNbot" "target="_blank" class="btn">Купить</a></td>
+          </tr>
+          <tr>s
+            <td>Стандарт</td>
+            <td>700₽</td>
+            <td>До 5 устройств, высокая скорость</td>
+            <td><a href="http://t.me/FortifiedVPNbot" "target="_blank" class="btn">Купить</a></td>
+          </tr>
+          <tr>
+            <td>Премиум</td>
+            <td>1000₽</td>
+            <td>Неограниченное число устройств, приоритетный трафик</td>
+            <td><a href="http://t.me/FortifiedVPNbot" "target="_blank" class="btn">Купить</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="tab-section">
+    <h2>Часто задаваемые вопросы</h2>
+    <div class="info-block">
+      <h3>Как подключить FortifiedVPN?</h3>
+      <p>Просто скачайте наше приложение, зарегистрируйтесь и выберите нужный сервер.</p>
+      
+      <h3>Можно ли использовать на нескольких устройствах?</h3>
+      <p>Да, наши тарифы позволяют подключать несколько устройств одновременно.</p>
+      
+      <h3>Как обеспечить безопасность данных?</h3>
+      <p>Мы используем современные протоколы шифрования для защиты вашей информации.</p>
+    </div>
+  </section>
+
+  <!-- Контакты -->
+  <section id="contact" class="tab-section">
+    <h2>Свяжитесь с нами</h2>
+    <div class="info-block">
+      <h3>Форма обратной связи</h3>
+      <form>
+        <label for="name">Имя:</label><br />
+        <input type="text" id="name" name="name" style="width: 100%; padding: 8px; margin-bottom: 10px;" /><br />
+        <label for="email">Email:</label><br />
+        <input type="email" id="email" name="email" style="width: 100%; padding: 8px; margin-bottom: 10px;" /><br />
+        <label for="message">Сообщение:</label><br />
+        <textarea id="message" name="message" rows="4" style="width: 100%; padding: 8px; margin-bottom: 10px;"></textarea><br />
+        <button type="submit" class="btn">Отправить</button>
+      </form>
+    </div>
+  </section>
+</main>
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Отзывы о ortifiedVPN</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        .review-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        .review {
+            border-bottom: 1px solid #eaeaea;
+            padding: 10px 0;
+        }
+        .review:last-child {
+            border-bottom: none;
+        }
+        .review h3 {
+            margin: 0 0 5px;
+            font-size: 18px;
+        }
+        .review p {
+            margin: 0;
+            font-size: 14px;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+
+<div class="review-container">
+    <h2>Отзывы о FortifiedVPN</h2>
+
+    <div class="review">
+        <h3>Иван П.</h3>
+        <p>FortifiedVPN - отличный сервис! Быстрая скорость и надежное соединение. Теперь я спокойно могу пользоваться интернетом без угрозы кибератак!</p>
+    </div>
+
+    <div class="review">
+        <h3>Елена С.</h3>
+        <p>Я использую FortifiedVPN уже несколько месяцев и очень довольна. Приложение простое в использовании, и я чувствую себя в безопасности.</p>
+    </div>
+
+    <div class="review">
+        <h3>Алексей К.</h3>
+        <p>Долго искал достойный VPN, и, наконец, нашел FortifiedVPN. Работает на всех устройствах без сбоев, могу рекомендовать!</p>
+    </div>
+
+    <div class="review">
+        <h3>Мария Л.</h3>
+        <p>Прекрасный VPN-сервис, который действительно работает. Я использую его для потокового видео, и качество всегда на высоте!</p>
+    </div>
+
+    <div class="review">
+        <h3>Петр Т.</h3>
+        <p>С помощью FortifiedVPN я смог получить доступ к заблокированным сайтам! Очень рекомендую, если вам нужна свобода в интернете.</p>
+    </div>
+</div>
+
+<!-- Футер -->
+<footer>
+  <p>&copy; 2026 FortifiedVPN. Все права защищены.</p>
+</footer>
+
+<!-- Скрипты для вкладок -->
+<script>
+  const tabItems = document.querySelectorAll('.nav ul li');
+  const sections = document.querySelectorAll('.tab-section');
+
+  tabItems.forEach(item => {
+    item.addEventListener('click', () => {
+      // Удаляем активный класс у всех
+      tabItems.forEach(i => i.classList.remove('active'));
+      // Добавляем активный класс выбранной вкладке
+      item.classList.add('active');
+
+      // Скрывем все разделы
+      sections.forEach(sec => sec.classList.remove('active'));
+      // Показываем выбранный раздел
+      const target = item.getAttribute('data-tab');
+      document.getElementById(target).classList.add('active');
+    });
+  });
+</script>
+
+<!-- Скрипт снегопада -->
+<script>
+  const snowContainer = document.getElementById('snow');
+
+  function createSnowflake() {
+    const snowflake = document.createElement('div');
+    snowflake.className = 'snowflake';
+    snowflake.style.left = Math.random() * 100 + 'vw';
+    snowflake.style.fontSize = (Math.random() * 8 + 4) + 'px';
+    snowflake.style.opacity = Math.random();
+    snowflake.style.transform = 'rotate(' + (Math.random() * 360) + 'deg)';
+    snowflake.style.animationDuration = (Math.random() * 10 + 10) + 's';
+
+    snowContainer.appendChild(snowflake);
+
+    // Удаляем снеговика после анимации
+    snowflake.addEventListener('animationend', () => {
+      snowflake.remove();
+    });
+  }
+
+  // Создаем снеговые частицы с интервалом
+  setInterval(createSnowflake, 200);
+</script>
+
+</body>
+</html>
